@@ -1,5 +1,4 @@
 import re
-
 li = list()
 hand = open('abc.txt')
 for line in hand:
