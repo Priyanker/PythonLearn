@@ -19,6 +19,7 @@ l.sort()
 for (k, v) in l:
     print(k, v)
 
+# another way to print the keys and values in a dictionary
 #l = list()
 # for k, v in d.items():
 #    l.append((v,k))
