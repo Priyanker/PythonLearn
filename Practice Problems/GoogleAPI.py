@@ -1,4 +1,6 @@
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
+import urllib.parse
+import urllib.error
 import json
 # Note that Google is increasingly requiring keys
 # for this API
@@ -6,7 +8,8 @@ serviceurl = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
 while True:
     address = input('Enter location: ')
-    if len(address) < 1: break
+    if len(address) < 1:
+        break
     url = serviceurl + urllib.parse.urlencode({'address': address})
     print('Retrieving', url)
     uh = urllib.request.urlopen(url)

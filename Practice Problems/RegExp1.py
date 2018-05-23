@@ -1,5 +1,5 @@
 import re
-li= list()
+li = list()
 hand = open('abc.txt')
 for line in hand:
     line = line.rstrip()
