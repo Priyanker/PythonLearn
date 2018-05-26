@@ -12,6 +12,6 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-cv2.imwrite('pic.png', frame)
+cv2.imwrite('images/pic.png', frame)
 
 cv2.imwrite('gray.png', gray)

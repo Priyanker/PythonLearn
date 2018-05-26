@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-img = cv2.imread('watch.jpg', cv2.IMREAD_COLOR)
+img = cv2.imread('images/watch.jpg', cv2.IMREAD_COLOR)
 
 cv2.line(img, (10, 10), (800, 800), (0, 255, 0), 15)
 cv2.rectangle(img, (15, 25), (200, 150), (255, 0, 0), 5)
