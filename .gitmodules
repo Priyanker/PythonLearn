@@ -1,0 +1,3 @@
+[submodule "OpenCV/learnopencv"]
+	path = OpenCV/learnopencv
+	url = https://github.com/Priyanker/learnopencv
