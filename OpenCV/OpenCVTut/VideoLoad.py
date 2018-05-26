@@ -14,4 +14,4 @@ cap.release()
 cv2.destroyAllWindows()
 cv2.imwrite('images/pic.png', frame)
 
-cv2.imwrite('gray.png', gray)
+cv2.imwrite('images/gray.png', gray)
