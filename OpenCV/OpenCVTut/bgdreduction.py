@@ -2,14 +2,13 @@
 
 import cv2
 '''
-cap = cv2.VideoCapture('images/car.mp4')
 cap = cv2.VideoCapture('images/car1.mp4')
 cap = cv2.VideoCapture('images/tech.mp4')
 cap = cv2.VideoCapture('images/ink.mp4')
 cap = cv2.VideoCapture('images/scienceexpl1.mp4')
-cap = cv2.VideoCapture('images/scienceexpl2.mp4')
 '''
 cap = cv2.VideoCapture('images/people-walking.mp4')
+cap = cv2.VideoCapture('images/scienceexpl2.mp4')
 
 # for video cam
 # cap = cv2.VideoCapture(0)
