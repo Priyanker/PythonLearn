@@ -3,10 +3,14 @@
 import cv2
 import matplotlib.pyplot as plt
 
-# also use images/featm1 and featm2
 img1 = cv2.imread('images/opencv-feature-matching-template.jpg', 0)
 img2 = cv2.imread('images/opencv-feature-matching-image.jpg', 0)
 
+# also use images/featm1 and featm2
+'''
+img1 = cv2.imread('images/opencv-feature-matching-template.jpg', 0)
+img2 = cv2.imread('images/opencv-feature-matching-image.jpg', 0)
+'''
 orb = cv2.ORB_create()
 
 kp1, des1 = orb.detectAndCompute(img1, None)
