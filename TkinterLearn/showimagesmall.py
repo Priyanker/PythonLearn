@@ -1,6 +1,8 @@
 from tkinter import filedialog
 import tkinter as tk
 from tkinter import ttk
+import copy
+from PIL import Image, ImageTk
 LARGE_FONT = ("Verdana", 12)
 file_path = ''
 
@@ -10,10 +12,10 @@ class Windows(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
-        tk.Tk.wm_title(self, "File Uploader")
-
+        tk.Tk.wm_title(self, "Three window app")
+        #tk.Tk.wm_geometry(self, newGeometry='900x100')
         container = tk.Frame(self)
-        container.pack(side="bottom", fill="both", expand=True)
+        container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
@@ -48,7 +50,7 @@ class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Start page", font=LARGE_FONT)
+        label = tk.Label(self, text="Welcome!", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
 
         button1 = ttk.Button(self, text="Visit Page 1",
@@ -58,7 +60,7 @@ class StartPage(tk.Frame):
         button2 = ttk.Button(self, text="Visit Page 2",
                              command=lambda: controller.show_frame(PageTwo))
 
-        button2.pack(pady=10, padx=10)
+        button2.pack()
 
 
 class PageOne(tk.Frame):
@@ -66,7 +68,7 @@ class PageOne(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Page Number One", font=LARGE_FONT)
-        label.pack(pady=10, padx=10)
+        label.pack()
 
         button1 = ttk.Button(self, text="Back to Home",
                              command=lambda: controller.show_frame(StartPage))
@@ -74,10 +76,28 @@ class PageOne(tk.Frame):
 
         button2 = ttk.Button(self, text="Visit Page 2",
                              command=lambda: controller.show_frame(PageTwo))
-        button2.pack(pady=10, padx=10)
+        button2.pack()
 
 
 class PageTwo(tk.Frame):
+    img = None
+    count1 = 0
+    count2 = 0
+
+    def showImg(self):
+        try:
+            load = Image.open(file_path)
+
+            render = ImageTk.PhotoImage(load)
+            self.img = tk.Label(self, image=render)
+            self.img.image = render
+            self.img.pack()
+            self.count1 = self.count1 + 1
+        except AttributeError as e:
+            print("Please Upload the image")
+
+    def clearImg(self):
+        self.img.pack_forget()
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -97,9 +117,23 @@ class PageTwo(tk.Frame):
                              command=ui)
 
         button3.pack(pady=10, padx=10)
+        try:
+
+            button4 = ttk.Button(self, text="Show Image",
+                                 command=self.showImg)
+
+            button4.pack(pady=10, padx=10)
+
+            button5 = ttk.Button(self, text="Clear",
+                                 command=self.clearImg)
+
+            button5.pack(pady=10, padx=10)
+
+        except AttributeError as e:
+            print("Please Upload the image")
 
 
 if __name__ == "__main__":
     app = Windows()
     app.mainloop()
-    print("Uploaded File Path: {}".format(file_path))
+    # print(file_path)
