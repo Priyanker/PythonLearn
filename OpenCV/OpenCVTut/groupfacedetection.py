@@ -15,7 +15,7 @@ img = cv2.imread('images/JL/JL.jpg')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 faces = face_cascade.detectMultiScale(gray)
 
-resface = copy.deepcopy(img)
+resface = copy.deepcopy(img)  # img.copy()
 count = 0
 for (x, y, w, h) in faces:
     cv2.rectangle(img, (x, y), (x+w, y+h), (66, 165, 245), 2)
