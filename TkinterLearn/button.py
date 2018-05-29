@@ -33,9 +33,6 @@ def q1(param):
     print(param)
 
 
-1
-
-
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):

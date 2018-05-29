@@ -1,7 +1,6 @@
 from tkinter import filedialog
 import tkinter as tk
 from tkinter import ttk
-import copy
 from PIL import Image, ImageTk
 LARGE_FONT = ("Verdana", 12)
 file_path = ''
@@ -14,13 +13,10 @@ class Windows(tk.Tk):
 
         tk.Tk.wm_title(self, "Three window app")
 
-        # These both do the same thing. They prevent a window from being resized
-        #tk.Tk.wm_resizable(self, width=False, height=False)
-        #tk.Tk.wm_resizable(self, 0,0)
+        # tk.Tk.wm_resizable(self, width=False, height=False)
+        # tk.Tk.wm_resizable(self, 0,0)
 
-        tk.Tk.wm_geometry(self, newGeometry='500x500')
-
-
+        tk.Tk.wm_geometry(self, newGeometry='1000x1000')
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
@@ -139,7 +135,7 @@ class PageTwo(tk.Frame):
         try:
             self.img.pack_forget()
             # or you can use this
-            #self.img.config(image = '')
+            # self.img.config(image = '')
         except AttributeError as e:
             print("Please Upload the image")
 

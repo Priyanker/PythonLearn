@@ -9,7 +9,6 @@ class Window(tk.Frame):
         self.master = master
 
 
-
 root = tk.Tk()
 
 app = Window(root)
