@@ -63,7 +63,7 @@ def download_video():
 btn_clear_url = Button(right, text="Clear Url", font=('arial', 25, 'bold'),
                        command=lambda: clear_url(), highlightbackground=color).grid(row=1, columns=1)
 btn_clear_path = Button(right, text="Clear Path", font=('arial', 25, 'bold'),
-                        command=lambda: clear_path(), highlightbackground='color').grid(row=3, columns=1)
+                        command=lambda: clear_path(), highlightbackground=color).grid(row=3, columns=1)
 btn_clear_all = Button(right, text="Clear all", font=('arial', 25, 'bold'),
                        command=lambda: clear_all(), highlightbackground=color).grid(row=5, columns=1)
 btn_down_video = Button(right,  text="Download Video", font=('arial', 22, 'bold'),
