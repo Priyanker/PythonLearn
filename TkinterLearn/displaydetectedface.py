@@ -17,7 +17,7 @@ class Windows(tk.Tk):
         # tk.Tk.wm_resizable(self, width=False, height=False)
         # tk.Tk.wm_resizable(self, 0,0)
 
-        tk.Tk.wm_geometry(self, newGeometry='1000x1000')
+        tk.Tk.wm_geometry(self, newGeometry='800x700')
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
