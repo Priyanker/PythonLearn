@@ -1,17 +1,19 @@
 # Haar Cascade Object Detection Face & Eye
-
+from tkinter import filedialog
 import cv2
 import copy
 # multiple cascades: https://github.com/Itseez/opencv/tree/master/data/haarcascades
 
 # https://github.com/Itseez/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml
 
+file_path = filedialog.askopenfilename()
+
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 smile_cascade = cv2.CascadeClassifier('haarcascade_smile.xml')
 # https://github.com/Itseez/opencv/blob/master/data/haarcascades/haarcascade_eye.xml
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 
-img = cv2.imread('images/JL/JL.jpg')
+img = cv2.imread(file_path)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 faces = face_cascade.detectMultiScale(gray)
 
