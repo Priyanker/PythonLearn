@@ -8,9 +8,11 @@ current = 0
 
 
 def move(delta):
+
     global current, image_list
     if not (0 <= current + delta < len(image_list)):
-        tkinter.MessageBox.showinfo('End', 'No more image.')
+        # tkinter.MessageBox.showinfo('End', 'No more image.')
+        print("NO MORE IMAGES")
         return
     current += delta
     image = Image.open(image_list[current])
@@ -29,8 +31,10 @@ frame = tkinter.Frame(root)
 frame.pack()
 
 
-tkinter.Button(frame, text='Previous picture', command=lambda: move(-1)).pack(side=tkinter.LEFT)
-tkinter.Button(frame, text='Next picture', command=lambda: move(+1)).pack(side=tkinter.LEFT)
+tkinter.Button(frame, text='Previous picture',
+               command=lambda: move(-1)).pack(side=tkinter.LEFT)
+tkinter.Button(frame, text='Next picture',
+               command=lambda: move(+1)).pack(side=tkinter.LEFT)
 tkinter.Button(frame, text='Quit', command=root.quit).pack(side=tkinter.LEFT)
 
 

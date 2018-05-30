@@ -1,6 +1,7 @@
 from tkinter import filedialog
-from tkinter import ttk
 import tkinter as tk
+from tkinter import ttk
+import facedetpic as fd
 from PIL import Image, ImageTk
 LARGE_FONT = ("Verdana", 12)
 file_path = ''
@@ -12,7 +13,11 @@ class Windows(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
 
         tk.Tk.wm_title(self, "Three window app")
-        # tk.Tk.wm_geometry(self, newGeometry='900x100')
+
+        # tk.Tk.wm_resizable(self, width=False, height=False)
+        # tk.Tk.wm_resizable(self, 0,0)
+
+        tk.Tk.wm_geometry(self, newGeometry='1000x1000')
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
@@ -43,6 +48,7 @@ def q1(param):
 def ui():
     global file_path
     file_path = filedialog.askopenfilename()
+    file_path = fd.getLoc(file_path)
 
 
 class StartPage(tk.Frame):
@@ -52,11 +58,11 @@ class StartPage(tk.Frame):
         label = tk.Label(self, text="Welcome!", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
 
-        button1 = ttk.Button(self, text="Visit Page 1",
+        button1 = ttk.Button(self, text="Uploading Window",
                              command=lambda: controller.show_frame(PageOne))
-        button1.pack(pady=10, padx=10)
+        button1.pack(pady=50, padx=10)
 
-        button2 = ttk.Button(self, text="Visit Page 2",
+        button2 = ttk.Button(self, text="Displaying window",
                              command=lambda: controller.show_frame(PageTwo))
 
         button2.pack()
@@ -66,37 +72,24 @@ class PageOne(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page Number One", font=LARGE_FONT)
+        label = tk.Label(self, text="Upload your image here", font=LARGE_FONT)
         label.pack()
 
         button1 = ttk.Button(self, text="Back to Home",
                              command=lambda: controller.show_frame(StartPage))
-        button1.pack(pady=10, padx=10)
+        button1.pack(pady=20, padx=10)
 
-        button2 = ttk.Button(self, text="Visit Page 2",
+        button2 = ttk.Button(self, text="Upload",
+                             command=ui, width=60)
+
+        button2.pack(pady=20, padx=10)
+
+        button3 = ttk.Button(self, text="Displaying Window",
                              command=lambda: controller.show_frame(PageTwo))
-        button2.pack()
+        button3.pack(pady=20)
 
 
 class PageTwo(tk.Frame):
-    img = None
-    count1 = 0
-    count2 = 0
-
-    def showImg(self):
-        try:
-            load = Image.open(file_path)
-
-            render = ImageTk.PhotoImage(load)
-            self.img = tk.Label(self, image=render)
-            self.img.image = render
-            self.img.pack()
-            self.count1 = self.count1 + 1
-        except AttributeError as e:
-            print("Please Upload the image")
-
-    def clearImg(self):
-        self.img.pack_forget()
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -108,14 +101,10 @@ class PageTwo(tk.Frame):
                              command=lambda: controller.show_frame(StartPage))
         button1.pack(pady=10, padx=10)
 
-        button2 = ttk.Button(self, text="Back to Page One",
+        button2 = ttk.Button(self, text="Back to Uploading Window",
                              command=lambda: controller.show_frame(PageOne))
         button2.pack(pady=10, padx=10)
 
-        button3 = ttk.Button(self, text="Upload",
-                             command=ui)
-
-        button3.pack(pady=10, padx=10)
         try:
 
             button4 = ttk.Button(self, text="Show Image",
@@ -128,6 +117,27 @@ class PageTwo(tk.Frame):
 
             button5.pack(pady=10, padx=10)
 
+        except AttributeError as e:
+            print("Please Upload the image")
+
+    img = None
+
+    def showImg(self):
+        try:
+            load = Image.open(file_path)
+
+            render = ImageTk.PhotoImage(load)
+            self.img = tk.Label(self, image=render)
+            self.img.image = render
+            self.img.pack(padx=20, pady=20)
+        except AttributeError as e:
+            print("Please Upload the image")
+
+    def clearImg(self):
+        try:
+            self.img.pack_forget()
+            # or you can use this
+            # self.img.config(image = '')
         except AttributeError as e:
             print("Please Upload the image")
 
