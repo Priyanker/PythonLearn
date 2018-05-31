@@ -3,7 +3,8 @@
 import cv2
 import copy
 file_paths = []
-# multiple cascades: https://github.com/Itseez/opencv/tree/master/data/haarcascades
+# multiple cascades:
+#    https: // github.com/Itseez/opencv/tree/master/data/haarcascades
 
 # https://github.com/Itseez/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml
 
@@ -11,18 +12,18 @@ file_paths = []
 def getLocs(location):
     global file_paths
     file_paths.clear()
-    face_cascade = cv2.CascadeClassifier(
-        'D:\Programming\PythonLearn\OpenCV\OpenCVTut\haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('D:\Programming\PythonLearn\OpenCV\OpenCVTut\haarcascade_frontalface_default.xml')
     # smile_cascade = cv2.CascadeClassifier(
     #    'D:\Programming\PythonLearn\OpenCV\OpenCVTut\haarcascade_smile.xml')
+
     # https://github.com/Itseez/opencv/blob/master/data/haarcascades/haarcascade_eye.xml
     # eye_cascade = cv2.CascadeClassifier(
     #    'D:\Programming\PythonLearn\OpenCV\OpenCVTut\haarcascade_eye.xml')
 
     img = cv2.imread(location)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, minSize=(50,50))
-    res_img = copy.deepcopy(img)
+    faces = face_cascade.detectMultiScale(gray, minSize=(50, 50))
+    # res_img = copy.deepcopy(img)
 
     img = cv2.imread(location)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -36,7 +37,7 @@ def getLocs(location):
         roi_color = img[y:y+h, x:x+w]
         roi_color1 = resface[y:y+h, x:x+w]
         s1 = 'face'+str(count)
-        #cv2.imshow(s1, roi_color1)
+        # cv2.imshow(s1, roi_color1)
         loc = "images/JL/"
         loc = loc + s1 + ".png"
         file_paths.append(loc)
@@ -66,5 +67,5 @@ def getLocs(location):
 
     cv2.imwrite('images/JL/mainout.jpg', img)
     file_paths.append('images/JL/mainout.jpg')
-    #print(len(file_paths))
+    # print(len(file_paths))
     return file_paths
