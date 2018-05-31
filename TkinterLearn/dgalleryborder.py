@@ -4,7 +4,7 @@ from tkinter import filedialog
 import tkinter as tk
 from tkinter import ttk
 import facesdetect as fsd
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageOps
 LARGE_FONT = ("Horizon", 22)
 file_paths1 = []
 current = 0
@@ -20,7 +20,7 @@ class Windows(tk.Tk):
         # tk.Tk.wm_resizable(self, 0,0)
 
         tk.Tk.wm_geometry(self, newGeometry='1024x720')
-        container = tk.Frame(self, background="#2196F3")
+        container = tk.Frame(self)
         style = ttk.Style()
         style.configure('TButton', background='#b71c1c', foreground='#212121')
         # style.configure('TButton', foreground='green')
@@ -133,7 +133,7 @@ class PageTwo(tk.Frame):
         ttk.Button(self, text='Quit', command=parent.quit).pack(side=tk.LEFT)
 
         self.label1 = tk.Label(self, compound=tk.LEFT, width=1000, height=900,
-                               background="#42A5F5", fg='#000000', borderwidth=2, relief="ridge", anchor="center")
+                               background="#00BCD4", fg='#000000', borderwidth=3, relief="ridge", anchor="center")
         self.label1.pack(padx=30, pady=60)
 
         self.move(0)
@@ -146,6 +146,7 @@ class PageTwo(tk.Frame):
             return
         current += delta
         image = Image.open(file_paths1[current])
+        image = ImageOps.expand(image, border=5, fill='#E0E0E0')
         if image.width > 500:
             image = image.resize((1500, 500))
         photo = ImageTk.PhotoImage(image)

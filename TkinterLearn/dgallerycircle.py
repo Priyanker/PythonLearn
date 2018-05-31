@@ -4,7 +4,7 @@ from tkinter import filedialog
 import tkinter as tk
 from tkinter import ttk
 import facesdetect as fsd
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageDraw, ImageOps
 LARGE_FONT = ("Horizon", 22)
 file_paths1 = []
 current = 0
@@ -72,9 +72,9 @@ def ui():
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, background='#26A69A')
+        tk.Frame.__init__(self, parent, background='#42A5F5')
         label = tk.Label(self, text="Welcome!", font=LARGE_FONT,
-                         fg='#3E2723', background='#26A69A')
+                         fg='#3E2723', background='#42A5F5')
         label.pack(pady=10, padx=10)
 
         button1 = ttk.Button(self, text="Uploading Window",
@@ -85,9 +85,9 @@ class StartPage(tk.Frame):
 class PageOne(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, background="#26A69A")
+        tk.Frame.__init__(self, parent, background="#42A5F5")
         label = tk.Label(self, text="Upload your Image",
-                         font=LARGE_FONT, background="#26A69A", fg='#3E2723')
+                         font=LARGE_FONT, background="#42A5F5", fg='#3E2723')
         label.pack()
 
         button1 = ttk.Button(self, text="Back to Home",
@@ -111,9 +111,9 @@ class PageTwo(tk.Frame):
 
     def __init__(self, parent, controller):
         # global label1
-        tk.Frame.__init__(self, parent, background="#26A69A")
+        tk.Frame.__init__(self, parent, background="#42A5F5")
         label = tk.Label(self, text="GALLERY", font=LARGE_FONT,
-                         background="#26A69A", fg='#3E2723')
+                         background="#42A5F5", fg='#3E2723')
         label.pack(pady=10, padx=10)
 
         # we use ttk for little bit more stylish buttons.
@@ -133,7 +133,7 @@ class PageTwo(tk.Frame):
         ttk.Button(self, text='Quit', command=parent.quit).pack(side=tk.LEFT)
 
         self.label1 = tk.Label(self, compound=tk.LEFT, width=1000, height=900,
-                               background="#42A5F5", fg='#000000', borderwidth=2, relief="ridge", anchor="center")
+                               background="#26A69A", fg='#000000', borderwidth=5, relief="ridge", anchor="center")
         self.label1.pack(padx=30, pady=60)
 
         self.move(0)
@@ -145,10 +145,19 @@ class PageTwo(tk.Frame):
             print("NO MORE IMAGES")
             return
         current += delta
+
+        size = (500, 500)
+        mask = Image.new('L', size, 0)
+        draw = ImageDraw.Draw(mask)
+        draw.ellipse((0, 0) + size, fill=255)
+
         image = Image.open(file_paths1[current])
-        if image.width > 500:
-            image = image.resize((1500, 500))
-        photo = ImageTk.PhotoImage(image)
+        output = ImageOps.fit(image, mask.size, centering=(0.5, 0.5))
+        output.putalpha(mask)
+
+        if output.width > 500:
+            output = output.resize((1500, 500))
+        photo = ImageTk.PhotoImage(output)
         # label['text'] = text_list[current] #to display text below the picture
         self.label1['image'] = photo
         self.label1.photo = photo
