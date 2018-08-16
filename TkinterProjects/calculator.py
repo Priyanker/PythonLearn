@@ -6,7 +6,7 @@ import tkinter.messagebox
 root = Tk()
 root.title('Cal')
 root.geometry("400x150")
-color = 'gray55'
+color = '#2196F3'
 root.configure(bg=color)
 root.resizable(width=False, height=False)
 

@@ -116,7 +116,7 @@ class PageTwo(tk.Frame):
                          background="#26A69A", fg='#3E2723')
         label.pack(pady=10, padx=10)
 
-        # we use ttk for little bit more stylish buttons.
+        # we use ttk for a bit more stylish buttons.
         # Otherwise tk.Button for general buttons
         button1 = ttk.Button(self, text="Back to Home",
                              command=lambda: controller.show_frame(StartPage))

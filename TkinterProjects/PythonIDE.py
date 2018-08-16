@@ -5,7 +5,7 @@ from io import StringIO
 root = Tk()
 root.title("Run Python Code")  # set up the title and size.
 root.geometry('800x500')  # set up the size
-color = 'gray32'
+color = '#2196F3'
 root.configure(bg=color)
 root.resizable(width=False, height=False)
 # ==================================================Frames========================
@@ -36,7 +36,8 @@ btn_clear_from = Button(top, text="clear", font=('arial', 25, 'bold'), highlight
                         command=lambda: clear_text())
 btn_clear_from.pack(side=TOP)
 
-btn_clear_to = Button(top, text="Run", font=('arial', 25, 'bold'), highlightbackground=color, command=lambda: run())
+btn_clear_to = Button(top, text="Run", font=('arial', 25, 'bold'),
+                      highlightbackground=color, command=lambda: run())
 btn_clear_to.pack(side=TOP)
 
 # ==================================================Message================

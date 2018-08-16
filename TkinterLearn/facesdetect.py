@@ -19,12 +19,13 @@ def getLocs(location):
     # https://github.com/Itseez/opencv/blob/master/data/haarcascades/haarcascade_eye.xml
     # eye_cascade = cv2.CascadeClassifier(
     #    'D:\Programming\PythonLearn\OpenCV\OpenCVTut\haarcascade_eye.xml')
-
+    '''
     img = cv2.imread(location)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, minSize=(50, 50))
     # res_img = copy.deepcopy(img)
 
+    '''
     img = cv2.imread(location)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray)
